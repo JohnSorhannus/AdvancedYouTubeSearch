@@ -5,3 +5,18 @@
 .navbar-custom {
 	background-color: #FF0000;
 }
+
+.btn-danger {
+	color: #fff;
+	background-color: #ff0000;
+	border-color: #ff0000;
+}
+
+footer {
+	color: #7a7a7a;
+	background-color: #f1f1f1;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+

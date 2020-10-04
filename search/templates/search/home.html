@@ -1,5 +1,41 @@
 {% extends 'search/main.html' %}
 
 {% block content %}
-<h1>Home</h1>
+<form class="mt-xl-4">
+	<div class="row form-group justify-content-center">
+		<label class="col-xl-1 col-form-label">General</label>
+		<div class="col-xl-4">
+			<input type="text" class="form-control">
+		</div>
+	</div>
+	<div class="row form-group justify-content-center">
+		<label class="col-xl-1 col-form-label">User</label>
+		<div class="col-xl-4">
+			<input type="text" class="form-control">
+		</div>
+	</div>
+	<div class="row form-group justify-content-center">
+		<label class="col-xl-1 col-form-label">Objects</label>
+		<div class="col-xl-4">
+			<input type="text" class="form-control">
+			<button type="button" class="btn btn-danger mt-1 float-right">Add</button>
+		</div>
+	</div>
+	<div class="row form-group justify-content-center">
+		<label class="col-xl-1 col-form-label">Captions</label>
+		<div class="col-xl-4">
+			<input type="text" class="form-control">
+		</div>
+	</div>
+	<div class="row form-group justify-content-center">
+		<label class="col-xl-1 col-form-label">Song</label>
+		<div class="col-xl-4">
+			<input type="text" class="form-control mb-1" placeholder="Title">
+			<input type="text" class="form-control" placeholder="Artist">
+		</div>
+	</div>
+	<div class="row form-group justify-content-center">
+		<button type="submit" class="btn btn-danger">Search</button>
+	</div>
+</form>
 {% endblock %}
