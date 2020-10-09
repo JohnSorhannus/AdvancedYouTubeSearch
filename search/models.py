@@ -11,6 +11,7 @@ class Video(models.Model):
 	video_url = models.TextField()
 	length = models.CharField(max_length=200)
 	views = models.CharField(max_length=200)
+	video_id = models.CharField(max_length=200, default='text')
 
 	def __str__(self):
 		return self.title
