@@ -1,2 +1,2 @@
 AdvancedYouTubeSearch/settings.py
-AdvancedYouTubeSearch/search/management/commands/videos/*
+AdvancedYouTubeSearch/search/management/commands/videos/
