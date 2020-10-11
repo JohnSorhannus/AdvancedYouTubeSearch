@@ -42,8 +42,6 @@ def download_video(url):
 
 	print('Video saved to database')
 
-	return vid_id
-
 #pass in xml of captions, converts to string
 def extract_captions(xml):
 	root = ET.fromstring(xml)

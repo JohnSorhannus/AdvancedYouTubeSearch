@@ -22,13 +22,3 @@ class Object(models.Model):
 
 	def __str__(self):
 		return self.name
-
-
-"""
-class VideoObject(models.Model):
-	obj = models.ForeignKey(Object, on_delete=models.CASCADE)
-	videos = models.ManyToManyField(Video)
-
-	def __str__(self):
-		return self.obj.__str__()
-"""
