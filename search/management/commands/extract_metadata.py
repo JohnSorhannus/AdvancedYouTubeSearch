@@ -1,5 +1,5 @@
 """
-ytanalyzer.py
+extract_metadata.py
 
 Contains functions that extract meta data and objects from videos and inserts data into database
 """
@@ -12,8 +12,8 @@ import re
 import html
 import pathlib
 
-def download_videos():
-	video = YouTube('https://www.youtube.com/watch?v=DyUrqZBs2XA&ab_channel=CaseyNeistat')
+def download_video(url):
+	video = YouTube(url)
 
 	try:
 		xml_captions = video.captions['en'].xml_captions
@@ -21,7 +21,7 @@ def download_videos():
 	except:
 		str_captions = ''
 
-	vid_id = extract.video_id('https://www.youtube.com/watch?v=DyUrqZBs2XA&ab_channel=CaseyNeistat')
+	vid_id = extract.video_id(url)
 
 	print('Downloading video...')
 	videos_path = str(pathlib.Path(__file__).parent.absolute()) + "/videos"
@@ -33,7 +33,7 @@ def download_videos():
 		user=video.author,
 		captions=str_captions,
 		thumbnail_url=video.thumbnail_url,
-		video_url='https://www.youtube.com/watch?v=DyUrqZBs2XA&ab_channel=CaseyNeistat',
+		video_url=url,
 		length=video.length,
 		views=video.views,
 		video_id=vid_id)
@@ -41,6 +41,8 @@ def download_videos():
 	entry.save()
 
 	print('Video saved to database')
+
+	return vid_id
 
 #pass in xml of captions, converts to string
 def extract_captions(xml):
