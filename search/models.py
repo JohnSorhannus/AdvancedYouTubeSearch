@@ -16,3 +16,15 @@ class Video(models.Model):
 	def __str__(self):
 		return self.title
 
+class Object(models.Model):
+	name = models.CharField(max_length=200)
+
+	def __str__(self):
+		return self.name
+
+class VideoObject(models.Model):
+	obj = models.ForeignKey(Object, on_delete=models.CASCADE)
+	videos = models.ManyToManyField(Video)
+
+	def __str__(self):
+		return self.obj.__str__()
