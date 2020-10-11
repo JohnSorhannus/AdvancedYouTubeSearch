@@ -10,4 +10,8 @@ from django.core.management import BaseCommand
 class Command(BaseCommand):
 	"""docstring for Command"""
 	def handle(self, **options):
-		emd.download_videos()
+		videos = ['https://www.youtube.com/watch?v=DyUrqZBs2XA&ab_channel=CaseyNeistat']
+
+		for video in videos:
+			vid_id = emd.download_video(video)
+
