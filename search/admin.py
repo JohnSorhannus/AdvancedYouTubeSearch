@@ -6,4 +6,4 @@ from .models import *
 
 admin.site.register(Video)
 admin.site.register(Object)
-admin.site.register(VideoObject)
+#admin.site.register(VideoObject)
