@@ -4,7 +4,7 @@ from django.db import models
 class Video(models.Model):
 	title = models.CharField(max_length=200)
 	description = models.TextField()
-	upload_date = models.CharField(max_length=10)
+	upload_date = models.DateField()
 	user = models.CharField(max_length=200)
 	captions = models.TextField(null=True) #some videos may not contain captions
 	thumbnail_url = models.TextField()
