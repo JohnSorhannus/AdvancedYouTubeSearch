@@ -1,22 +1,47 @@
 {% extends 'search/main.html' %}
 
 {% block content %}
-<h1>Results For</h1>
 
-{% for vid in videos %}
-<div class="row mb-3 align-items-center justify-content-center">
-	<div class="col-auto">
-		<img src="{{vid.thumbnail_url}}" width="250">
-	</div>
-	<div class="col-sm-6">
-		<span><a href="{{vid.video_url}}">{{vid.title}}</a></span><br>
-		<span>By {{vid.user}}</span><br>
-		<span>Uploaded: {{vid.upload_date}}</span><br>
-		<span><span class="views">{{vid.views}}</span> Views</span><br>
-		<span class="length">{{vid.length}}</span>
-	</div>
+<div class="text-center bg-light py-2 mb-3">
+	<h2>Results For:</h2>
+
+	{% if request.GET.title %}
+	<h6>General: {{request.GET.title}}</h6>
+	{% endif %}
+
+	{% if request.GET.user %}
+	<h6>User: {{request.GET.user}}</h6>
+	{% endif %}
+
+	{% if request.GET.object %}
+	<h6>Object: {{request.GET.object}}</h6>
+	{% endif %}
+
+	{% if request.GET.caption %}
+	<h6>Caption: {{request.GET.caption}}</h6>
+	{% endif %}
+
+	{% if request.GET.date1 and request.GET.date2 %}
+	<h6>Date Range: {{request.GET.date1}} - {{request.GET.date2}}</h6>
+	{% endif %}
 </div>
-{% endfor %}
+
+<div class="container">
+	{% for vid in videos %}
+	<div class="row mb-3 align-items-center justify-content-center">
+		<div class="col-auto">
+			<img src="{{vid.thumbnail_url}}" width="250">
+		</div>
+		<div class="col-sm-6">
+			<span><a href="{{vid.video_url}}">{{vid.title}}</a></span><br>
+			<span>By {{vid.user}}</span><br>
+			<span>Uploaded: {{vid.upload_date}}</span><br>
+			<span><span class="views">{{vid.views}}</span> Views</span><br>
+			<span class="length">{{vid.length}}</span>
+		</div>
+	</div>
+	{% endfor %}
+</div>
 
 {% load static %}
 <script src="{% static 'js/results_funcs.js' %}"></script>

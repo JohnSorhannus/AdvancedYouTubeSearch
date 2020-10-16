@@ -1,42 +1,44 @@
 {% extends 'search/main.html' %}
 
 {% block content %}
-<form class="mt-xl-4" method="GET" action="/results/">
-	<div class="row form-group justify-content-center">
-		<label class="col-xl-1 col-form-label">General</label>
-		<div class="col-xl-4">
-			<input type="text" name='title' value='{{ request.GET.title }}' class="form-control">
+<div class="container">
+	<form class="mt-xl-4" method="GET" action="/results/">
+		<div class="row form-group justify-content-center">
+			<label class="col-xl-1 col-form-label">General</label>
+			<div class="col-xl-4">
+				<input type="text" name='title' value='{{ request.GET.title }}' class="form-control">
+			</div>
 		</div>
-	</div>
-	<div class="row form-group justify-content-center">
-		<label class="col-xl-1 col-form-label">User</label>
-		<div class="col-xl-4">
-			<input type="text" name='user' value='{{ request.GET.user }}' class="form-control">
+		<div class="row form-group justify-content-center">
+			<label class="col-xl-1 col-form-label">User</label>
+			<div class="col-xl-4">
+				<input type="text" name='user' value='{{ request.GET.user }}' class="form-control">
+			</div>
 		</div>
-	</div>
-	<div class="row form-group justify-content-center">
-		<label class="col-xl-1 col-form-label">Objects</label>
-		<div class="col-xl-4">
-			<input type="text" name='object' value='{{ request.GET.object }}' class="form-control">
-			<button type="button" class="btn btn-danger mt-1 float-right">Add</button>
+		<div class="row form-group justify-content-center">
+			<label class="col-xl-1 col-form-label">Objects</label>
+			<div class="col-xl-4">
+				<input type="text" name='object' value='{{ request.GET.object }}' class="form-control">
+				<button type="button" class="btn btn-danger mt-1 float-right">Add</button>
+			</div>
 		</div>
-	</div>
-	<div class="row form-group justify-content-center">
-		<label class="col-xl-1 col-form-label">Captions</label>
-		<div class="col-xl-4">
-			<input type="text" name='caption' value='{{ request.GET.caption }}' class="form-control">
+		<div class="row form-group justify-content-center">
+			<label class="col-xl-1 col-form-label">Captions</label>
+			<div class="col-xl-4">
+				<input type="text" name='caption' value='{{ request.GET.caption }}' class="form-control">
+			</div>
 		</div>
-	</div>
-	<div class="row form-group justify-content-center">
-		<label class="col-xl-1 col-form-label">Date</label>
-		<div class="col-xl-4 text-center">
-			<input type="date" name='date1' value='{{ request.GET.date1 }}' class="form-control">
-			<label class="col-form-label">To</label>
-			<input type="date" name='date2' value='{{ request.GET.date2 }}'class="form-control">
+		<div class="row form-group justify-content-center">
+			<label class="col-xl-1 col-form-label">Date</label>
+			<div class="col-xl-4 text-center">
+				<input type="date" name='date1' value='{{ request.GET.date1 }}' class="form-control">
+				<label class="col-form-label">To</label>
+				<input type="date" name='date2' value='{{ request.GET.date2 }}'class="form-control">
+			</div>
 		</div>
-	</div>
-	<div class="row form-group justify-content-center">
-		<button type="submit" class="btn btn-danger">Search</button>
-	</div>
-</form>
+		<div class="row form-group justify-content-center">
+			<button type="submit" class="btn btn-danger">Search</button>
+		</div>
+	</form>
+</div>
 {% endblock %}
