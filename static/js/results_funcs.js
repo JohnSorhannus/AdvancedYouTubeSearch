@@ -1,5 +1,5 @@
 function formatViews() {
-	var elements = document.getElementsByClassName('views')
+	var elements = document.getElementsByClassName('views');
 	for (var i = 0; i < elements.length; i++) {
 		elements[i].innerHTML = elements[i].innerHTML.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
@@ -21,6 +21,11 @@ function formatLength() {
 		if (hours != 0) {
 			elements[i].innerHTML = hours + ":";
 		}
+
+		if (seconds < 10) {
+			seconds = "0" + seconds;
+		}
+
 		elements[i].innerHTML = elements[i].innerHTML + minutes + ":" + seconds;
 	}
 }

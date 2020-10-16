@@ -18,8 +18,10 @@
 		<div class="row form-group justify-content-center">
 			<label class="col-xl-1 col-form-label">Objects</label>
 			<div class="col-xl-4">
-				<input type="text" name='object' value='{{ request.GET.object }}' class="form-control">
-				<button type="button" class="btn btn-danger mt-1 float-right">Add</button>
+				<div id="objects">
+					<input type="text" name='object1' value='{{ request.GET.object1 }}' class="form-control">
+				</div>
+				<button type="button" onclick="addObjectBox()" class="btn btn-danger mt-1 float-right">Add</button>
 			</div>
 		</div>
 		<div class="row form-group justify-content-center">
@@ -41,4 +43,6 @@
 		</div>
 	</form>
 </div>
+{% load static %}
+<script src="{% static 'js/add_object.js' %}"></script>
 {% endblock %}
