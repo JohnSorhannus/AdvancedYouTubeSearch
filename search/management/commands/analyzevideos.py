@@ -15,7 +15,9 @@ class Command(BaseCommand):
 	def handle(self, **options):
 		videos = ['https://www.youtube.com/watch?v=dbdYRc5Cc7Y&ab_channel=RAY%21']
 
+		count = 1
 		for video in videos:
+			print('Video ' + str(count) + '/' + str(len(videos))) 
 			vid_id = extract.video_id(video)
 			#if does not already exist in database
 			try:

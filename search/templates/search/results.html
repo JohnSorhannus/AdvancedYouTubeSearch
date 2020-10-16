@@ -1,18 +1,24 @@
 {% extends 'search/main.html' %}
 
 {% block content %}
-<h1>Results</h1>
+<h1>Results For</h1>
 
-<table>
-	<tr>
-		<th>Name</th>
-		<th>Author</th>
-	</tr>
-	{% for vid in videos %}
-	<tr>
-		<th>{{vid.title}}</th>
-		<th>{{vid.user}}</th>
-	</tr>
-	{% endfor %}
-</table>
+{% for vid in videos %}
+<div class="row mb-3 align-items-center justify-content-center">
+	<div class="col-auto">
+		<img src="{{vid.thumbnail_url}}" width="250">
+	</div>
+	<div class="col-sm-6">
+		<span><a href="{{vid.video_url}}">{{vid.title}}</a></span><br>
+		<span>By {{vid.user}}</span><br>
+		<span>Uploaded: {{vid.upload_date}}</span><br>
+		<span><span class="views">{{vid.views}}</span> Views</span><br>
+		<span class="length">{{vid.length}}</span>
+	</div>
+</div>
+{% endfor %}
+
+{% load static %}
+<script src="{% static 'js/results_funcs.js' %}"></script>
+
 {% endblock %}

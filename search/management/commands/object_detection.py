@@ -31,14 +31,16 @@ def extract_images(vid_id):
 def detect_objects(vid_id):
 	abs_path = str(pathlib.Path(__file__).parent.absolute())
 	darkflow_path = 'darkflow'
-	options = {"model": darkflow_path + "/cfg/yolo.cfg", "load": darkflow_path + "/bin/yolo.weights", "threshold": 0.2}
+	options = {"model": darkflow_path + "/cfg/yolo.cfg", "load": darkflow_path + "/bin/yolo.weights", "threshold": 0.25}
 
 	tfnet = TFNet(options)
 
 	screencap_path = abs_path + '/screencaps/'
 	images = [x for x in os.listdir(screencap_path) if x.endswith('.jpg')]
 
+	count = 1
 	for img in images:
+		print('Extracting objects from frame ' + str(count) + '/' + str(len(images)))
 		imgcv = cv2.imread(screencap_path + img)
 		result = tfnet.return_predict(imgcv)
 		for dict_ in result:
@@ -55,3 +57,4 @@ def detect_objects(vid_id):
 				video = Video.objects.get(video_id=vid_id)
 				obj_db.videos.add(video)
 		os.remove(screencap_path + img)
+		count += 1
