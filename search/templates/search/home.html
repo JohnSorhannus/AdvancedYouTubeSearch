@@ -4,9 +4,15 @@
 <div class="container">
 	<form class="mt-xl-4" method="GET" action="/results/">
 		<div class="row form-group justify-content-center">
-			<label class="col-xl-1 col-form-label">General</label>
+			<label class="col-xl-1 col-form-label">Title</label>
 			<div class="col-xl-4">
 				<input type="text" name='title' value='{{ request.GET.title }}' class="form-control">
+			</div>
+		</div>
+		<div class="row form-group justify-content-center">
+			<label class="col-xl-1 col-form-label">Description</label>
+			<div class="col-xl-4">
+				<input type="text" name='description' value='{{ request.GET.description }}' class="form-control">
 			</div>
 		</div>
 		<div class="row form-group justify-content-center">

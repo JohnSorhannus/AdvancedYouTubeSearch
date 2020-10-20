@@ -15,6 +15,9 @@ def searchResults(request):
 	if query['title']:
 		myargs['title__icontains'] = query['title']
 
+	if query['description']:
+		myargs['description__icontains'] = query['description']
+
 	if query['user']:
 		myargs['user__iexact'] = query['user']
 
