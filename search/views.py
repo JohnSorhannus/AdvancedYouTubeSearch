@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import *
+import time
 
 # Create your views here.
 
@@ -8,6 +9,7 @@ def home(request):
 	return render(request, 'search/home.html')
 
 def searchResults(request):
+	start = time.perf_counter()
 	query = request.GET
 	myargs = {}
 	videos = ''
@@ -38,9 +40,11 @@ def searchResults(request):
 	for obj in objects:
 		if obj and videos:
 			videos = videos.filter(object__name__iexact=obj)
-		elif obj and not videos:
+		elif obj and not myargs and not videos:
 			videos = Video.objects.filter(object__name__iexact=obj)
 
-	print(request.GET)
+	end = time.perf_counter()
+	print("Search results in " + str((end - start) * 1000) + " seconds")
+	print("Number of results: " + str(len(videos)))
 
 	return render(request, 'search/results.html', {'videos': videos})
