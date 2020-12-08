@@ -15,11 +15,14 @@ import pathlib
 def download_video(url):
 	video = YouTube(url)
 
-	try:
+	if 'en' in video.captions:
 		xml_captions = video.captions['en'].xml_captions
-		str_captions = extract_captions(xml_captions)
-	except:
-		str_captions = ''
+	elif 'a.en' in video.captions:
+		xml_captions = video.captions['a.en'].xml_captions
+	else:
+		xml_captions = ''
+
+	str_captions = extract_captions(xml_captions)
 
 	vid_id = extract.video_id(url)
 
@@ -44,8 +47,11 @@ def download_video(url):
 
 #pass in xml of captions, converts to string
 def extract_captions(xml):
-	root = ET.fromstring(xml)
 	caption = ''
+	try:
+		root = ET.fromstring(xml)
+	except:
+		return caption
 
 	for s in root.iter('text'):
 		sen = s.text
