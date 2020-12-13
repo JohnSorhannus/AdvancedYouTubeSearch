@@ -13,7 +13,7 @@ from search.models import *
 class Command(BaseCommand):
 	"""docstring for Command"""
 	def handle(self, **options):
-		videos = ['https://www.youtube.com/watch?v=dEcsD_EEnBo&ab_channel=FOX11LosAngeles'
+		videos = ['https://www.youtube.com/watch?v=simV1ZXFsxI&ab_channel=TheOnion'
 		]
 
 		count = 1

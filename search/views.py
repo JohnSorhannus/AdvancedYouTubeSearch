@@ -1,10 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.template import Context, Template
+from django.views.decorators.csrf import csrf_exempt
+from pytube import YouTube, extract
 from .models import *
 import time
 
 # Create your views here.
-
 def home(request):
 	return render(request, 'search/home.html')
 
@@ -48,3 +50,19 @@ def searchResults(request):
 	print("Number of results: " + str(len(videos)))
 
 	return render(request, 'search/results.html', {'videos': videos})
+
+@csrf_exempt
+def addVideo(request):
+	if request.method == "POST":
+		url = request.POST['url']
+		is_valid = False
+		video_exists = False
+		try:
+			vid_id = extract.video_id(url)
+			video_exists = Video.objects.filter(video_id=vid_id).exists()
+			if not video_exists:
+				vid = YouTube(url)
+				is_valid = True
+		except:
+			pass
+		return JsonResponse({'is_valid': is_valid, 'video_exists': video_exists})

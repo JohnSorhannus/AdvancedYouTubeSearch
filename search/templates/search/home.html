@@ -2,6 +2,35 @@
 
 {% block content %}
 <div class="container">
+	<div class="mt-2 text-center">
+		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#addVideoModal">Add Video to Library</button>
+	</div>
+	
+	<div class="modal fade" id="addVideoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+		    <div class="modal-content">
+		      <form method="POST" action="addVideo/" id="newvid">
+		      	  {% csrf_token %}
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">Add Video</h5>
+			        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+			      </div>
+			      <div class="modal-body">
+			        <p>Do you have a video you would like to add to the Advanced YouTube Search library? Paste the URL of the YouTube video below</p>
+			        <input type="url" name='url' class="form-control">
+			        <div class="d-none" id="spinner" role="status">
+			        	<span class="sr-only">Loading...</span>
+			        </div>
+			        <p id="statusMessage" class="d-none"></p>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			        <button type="submit" class="btn btn-danger">Add</button>
+			      </div>
+		      </form>
+		    </div>
+	  	</div>
+	</div>
 	<form class="mt-xl-4" method="GET" action="/results/">
 		<div class="row form-group justify-content-center">
 			<label class="col-xl-1 col-form-label">Title</label>
