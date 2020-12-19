@@ -11,11 +11,12 @@ from django.core.management import BaseCommand
 from search.models import *
 
 class Command(BaseCommand):
-	"""docstring for Command"""
-	def handle(self, **options):
-		videos = ['https://www.youtube.com/watch?v=simV1ZXFsxI&ab_channel=TheOnion'
-		]
+	def add_arguments(self, parser):
+		parser.add_argument('url', type=str, nargs='+', help='URL of video to be added to the Advanced YouTube Search library.')
 
+	"""docstring for Command"""
+	def handle(self, **kwargs):
+		videos = kwargs['url']
 		count = 1
 		for video in videos:
 			print('Video ' + str(count) + '/' + str(len(videos))) 
