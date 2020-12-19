@@ -50,6 +50,10 @@
 		</div>
 	</form>
 </div>
+<script type="text/javascript">$(function () {
+  $('[data-toggle="popover"]').popover({html:true})
+})</script>
 {% load static %}
 <script src="{% static 'js/add_object.js' %}"></script>
+<script src="{% static 'js/add_video.js' %}"></script>
 {% endblock %}
