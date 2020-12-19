@@ -20,3 +20,9 @@ footer {
 	padding-bottom: 20px;
 }
 
+@media (max-width: 576px) {
+	#results {
+		width: 250px;
+	}
+}
+

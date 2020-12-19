@@ -35,11 +35,11 @@
 		{% endif %}
 	</div>
 
-	<div class="container">
+	<div class="container" id="results">
 		{% for vid in videos %}
 		<div class="row mb-3 align-items-center justify-content-center">
 			<div class="col-auto">
-				<img src="{{vid.thumbnail_url}}" width="250">
+				<img src="{{vid.thumbnail_url}}" class="img-fluid" width="250">
 			</div>
 			<div class="col-sm-6">
 				<span><a href="{{vid.video_url}}">{{vid.title}}</a></span><br>
