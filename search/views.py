@@ -2,9 +2,13 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.template import Context, Template
 from django.views.decorators.csrf import csrf_exempt
+from django.core import management
 from pytube import YouTube, extract
+from celery import Celery
 from .models import *
 import time
+from search.tasks import analyzevideo
+#from .tasks import analyzevideo
 
 # Create your views here.
 def home(request):
@@ -63,6 +67,7 @@ def addVideo(request):
 			if not video_exists:
 				vid = YouTube(url)
 				is_valid = True
+				analyzevideo.delay(url)
 		except:
 			pass
 		return JsonResponse({'is_valid': is_valid, 'video_exists': video_exists})

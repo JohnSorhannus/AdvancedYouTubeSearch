@@ -13,7 +13,7 @@ import html
 import pathlib
 
 def download_video(url):
-	video = YouTube(url)
+	video = YouTube(url) # put a try here, it will fail if video does not exist/not valid/been deleted
 
 	if 'en' in video.captions:
 		xml_captions = video.captions['en'].xml_captions
