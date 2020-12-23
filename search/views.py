@@ -18,7 +18,7 @@ def searchResults(request):
 	start = time.perf_counter()
 	query = request.GET
 	myargs = {}
-	videos = ''
+	videos = Video.objects.none()
 
 	if query['title']:
 		myargs['title__icontains'] = query['title']
@@ -48,6 +48,9 @@ def searchResults(request):
 			videos = videos.filter(object__name__iexact=obj)
 		elif obj and not myargs and not videos:
 			videos = Video.objects.filter(object__name__iexact=obj)
+		
+		if not videos:
+			break
 
 	end = time.perf_counter()
 	print("Search results in " + str((end - start) * 1000) + " seconds")
