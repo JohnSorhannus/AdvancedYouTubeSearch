@@ -23,8 +23,8 @@ class Command(BaseCommand):
 			vid_id = extract.video_id(video) # if not a yt url, will fail here
 			if not Video.objects.filter(video_id=vid_id).exists():
 				emd.download_video(video)
-				od.extract_images(vid_id)
-				od.detect_objects(vid_id)
+				screeencap_path = od.extract_images(vid_id)
+				od.detect_objects(vid_id, screeencap_path)
 
 			count += 1
 

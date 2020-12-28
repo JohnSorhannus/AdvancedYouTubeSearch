@@ -7,10 +7,10 @@ Contains functions that extract meta data and objects from videos and inserts da
 from pytube import YouTube
 from pytube import extract
 from search.models import Video
+from pathlib import Path
 import xml.etree.ElementTree as ET
 import re
 import html
-import pathlib
 
 def download_video(url):
 	video = YouTube(url) # put a try here, it will fail if video does not exist/not valid/been deleted
@@ -27,7 +27,7 @@ def download_video(url):
 	vid_id = extract.video_id(url)
 
 	print('Downloading video...')
-	videos_path = str(pathlib.Path(__file__).parent.absolute()) + "/videos"
+	videos_path = Path(__file__).resolve().parent.parent.joinpath('videos')
 	video.streams.filter(file_extension='mp4').order_by('resolution').desc().first().download(videos_path, vid_id)
 
 	entry = Video(title=video.title,
