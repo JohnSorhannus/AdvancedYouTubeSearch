@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.template import Context, Template
 from django.views.decorators.csrf import csrf_exempt
 from django.core import management
+from django.core.paginator import Paginator
 from pytube import YouTube, extract
 from celery import Celery
 from .models import *
@@ -52,11 +53,15 @@ def searchResults(request):
 		if not videos:
 			break
 
+	paginator = Paginator(videos, 10)
+	page_number = request.GET.get('page')
+	page_obj = paginator.get_page(page_number)
+
 	end = time.perf_counter()
 	print("Search results in " + str((end - start) * 1000) + " seconds")
 	print("Number of results: " + str(len(videos)))
 
-	return render(request, 'search/results.html', {'videos': videos})
+	return render(request, 'search/results.html', {'videos': page_obj})
 
 @csrf_exempt
 def addVideo(request):
