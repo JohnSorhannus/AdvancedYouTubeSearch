@@ -2,63 +2,64 @@
 
 {% block content %}
 
+{% if videos %}
 <div class="text-center bg-light py-2 mb-3">
-	{% if videos %}
-		<h2>Results For:</h2>
+	<h2>Results For:</h2>
 
-		{% if request.GET.title %}
-		<h6>Title: {{request.GET.title}}</h6>
-		{% endif %}
-
-		{% if request.GET.description %}
-		<h6>Description: {{request.GET.description}}</h6>
-		{% endif %}
-
-		{% if request.GET.user %}
-		<h6>User: {{request.GET.user}}</h6>
-		{% endif %}
-
-		{% if request.GET.object1 %}
-			<h6>Object:
-				{% for k, obj in request.GET.items %}
-					{% if 'object' in k and obj %}
-						{% if k != 'object1' %}
-							<span>, </span> 
-						{% endif %}
-						<span>{{obj}}</span>
-					{% endif %}
-				{% endfor %}</h6>
-		{% endif %}
-
-		{% if request.GET.caption %}
-		<h6>Caption: {{request.GET.caption}}</h6>
-		{% endif %}
-
-		{% if request.GET.date1 and request.GET.date2 %}
-		<h6>Date Range: {{request.GET.date1}} - {{request.GET.date2}}</h6>
-		{% endif %}
-	</div>
-
-	<div class="container" id="results">
-		{% for vid in videos %}
-		<div class="row mb-3 align-items-center justify-content-center">
-			<div class="col-auto">
-				<img src="{{vid.thumbnail_url}}" class="img-fluid" width="250">
-			</div>
-			<div class="col-sm-6">
-				<span><a href="{{vid.video_url}}">{{vid.title}}</a></span><br>
-				<span>By {{vid.user}}</span><br>
-				<span>Uploaded: {{vid.upload_date}}</span><br>
-				<span><span class="views">{{vid.views}}</span> Views</span><br>
-				<span class="length">{{vid.length}}</span>
-			</div>
-		</div>
-		{% endfor %}
-	</div>
-	{% else %}
-	<h1 class="my-5">No results found</h1>
-	</div>
+	{% if request.GET.title %}
+	<h6>Title: {{request.GET.title}}</h6>
 	{% endif %}
+
+	{% if request.GET.description %}
+	<h6>Description: {{request.GET.description}}</h6>
+	{% endif %}
+
+	{% if request.GET.user %}
+	<h6>User: {{request.GET.user}}</h6>
+	{% endif %}
+
+	{% if request.GET.object1 %}
+		<h6>Object:
+			{% for k, obj in request.GET.items %}
+				{% if 'object' in k and obj %}
+					{% if k != 'object1' %}
+						<span>, </span> 
+					{% endif %}
+					<span>{{obj}}</span>
+				{% endif %}
+			{% endfor %}</h6>
+	{% endif %}
+
+	{% if request.GET.caption %}
+	<h6>Caption: {{request.GET.caption}}</h6>
+	{% endif %}
+
+	{% if request.GET.date1 and request.GET.date2 %}
+	<h6>Date Range: {{request.GET.date1}} - {{request.GET.date2}}</h6>
+	{% endif %}
+</div>
+
+<div class="container" id="results">
+	{% for vid in videos %}
+	<div class="row mb-3 align-items-center justify-content-center">
+		<div class="col-auto">
+			<img src="{{vid.thumbnail_url}}" class="img-fluid" width="250">
+		</div>
+		<div class="col-sm-6">
+			<span><a href="{{vid.video_url}}">{{vid.title}}</a></span><br>
+			<span>By {{vid.user}}</span><br>
+			<span>Uploaded: {{vid.upload_date}}</span><br>
+			<span><span class="views">{{vid.views}}</span> Views</span><br>
+			<span class="length">{{vid.length}}</span>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+{% else %}
+<div class="text-center bg-light h-100">
+	<h1 class="my-5">No Results Found</h1>
+</div>
+{% endif %}
 
 {% load static %}
 <script src="{% static 'js/results_funcs.js' %}"></script>
